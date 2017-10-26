@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>CodeZipe App</title>
+    <style>
+      .check , .remove {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <section class="container">
@@ -18,11 +23,35 @@
             <div class="input-field col s12">
               <i class="material-icons prefix">pin_drop</i>
               <input placeholder="Enter zipcode" id="first_name" type="text" class="validate zip">
-              <i class="material-icons prefix">check</i>
+              <i class="material-icons prefix check">check</i>
+              <i class="material-icons prefix remove">remove</i>
             </div>
           </div>
         </form>
       </div>
     </section>
+    <br>
+    <div class="container">
+      <div class="output"></div>
+    </div>
+
+    <script>
+      //Listen for submit
+      document.querySelector('#zipForm').addEventListener('submit', getLocationInfo);
+
+      function getLocationInfo(e) {
+        //Get ZIP value from input
+        const zip = document.querySelector('.zip').value;
+
+        //Make request
+
+        fetch(`http://api.zippopotam.us/us/${zip}`)
+          .then(response => response.json())
+          .then(data => {
+            console.log(data);
+          });
+        e.preventDefault();
+      }
+    </script>
   </body>
 </html>
