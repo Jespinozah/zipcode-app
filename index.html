@@ -11,6 +11,7 @@
       .check , .remove {
         display: none;
       }
+
     </style>
   </head>
   <body>
@@ -48,12 +49,14 @@
         fetch(`http://api.zippopotam.us/us/${zip}`)
           .then(response => {
             if (response.status != 200) {
+              showIcon('remove');
               document.querySelector('#output').innerHTML =
               `<article class="center">
               <div class="new badge red">Invalid Zipcode, please try again</div>
               </article>`;
               throw Error(response.statusText);
             } else {
+              showIcon('check');
               return response.json();
             }
           })
@@ -62,6 +65,18 @@
           })
           .catch(err => console.log(err));
         e.preventDefault();
+      }
+
+      function showIcon(icon) {
+        // //clear icons
+        // document.querySelector('.remove')
+        // .style.display = 'hidden';
+        // document.querySelector('.check')
+        // .style.display = 'hidden';
+        //
+        //show correct icon
+        // document.querySelector(`${icon}`)
+        // .style.display = 'inline-block';
       }
     </script>
   </body>
