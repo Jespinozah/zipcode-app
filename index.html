@@ -32,7 +32,7 @@
     </section>
     <br>
     <div class="container">
-      <div class="output"></div>
+      <div id="output"></div>
     </div>
 
     <script>
@@ -46,10 +46,21 @@
         //Make request
 
         fetch(`http://api.zippopotam.us/us/${zip}`)
-          .then(response => response.json())
+          .then(response => {
+            if (response.status != 200) {
+              document.querySelector('#output').innerHTML =
+              `<article class="center">
+              <div class="new badge red">Invalid Zipcode, please try again</div>
+              </article>`;
+              throw Error(response.statusText);
+            } else {
+              return response.json();
+            }
+          })
           .then(data => {
             console.log(data);
-          });
+          })
+          .catch(err => console.log(err));
         e.preventDefault();
       }
     </script>
