@@ -65,18 +65,18 @@
             let output = '';
             data.places.forEach(place => {
               output+=`
-              <article class="center">
-                <div class="message-header">
-                  <p>Location Info</p>
-                </div>
-                <div class="message-body">
-                  <ul>
-                    <li>City: ${place['place name']}</li>
-                    <li>State: ${place['state']}</li>
-                    <li>Longitud: ${place['longitude']}</li>
-                    <li>Latituded: ${place['latituded']}</li>
-                  </ul>
-                </div>
+              <article class="center teal accent-1">
+               <ul class="collection with-header">
+                  <li class="collection-header"><h4>Location info</h4>
+                    <a class="btn-floating btn-tiny red">
+                      <i class="tiny material-icons">delete</i>
+                    </a>
+                  </li>
+                  <li class="collection-item">City: ${place['place name']}</li>
+                  <li class="collection-item">State: ${place['state']}</li>
+                  <li class="collection-item">Longitud: ${place['longitude']}</li>
+                  <li class="collection-item">Latituded: ${place['latituded']}</li>
+                </ul>
               </article>
               `;
             });
