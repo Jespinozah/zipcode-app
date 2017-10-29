@@ -61,6 +61,28 @@
             }
           })
           .then(data => {
+            //Show location info
+            let output = '';
+            data.places.forEach(place => {
+              output+=`
+              <article class="center">
+                <div class="message-header">
+                  <p>Location Info</p>
+                </div>
+                <div class="message-body">
+                  <ul>
+                    <li>City: ${place['place name']}</li>
+                    <li>State: ${place['state']}</li>
+                    <li>Longitud: ${place['longitude']}</li>
+                    <li>Latituded: ${place['latituded']}</li>
+                  </ul>
+                </div>
+              </article>
+              `;
+            });
+
+            //Inser into output div
+            document.querySelector('#output').innerHTML = output;
             console.log(data);
           })
           .catch(err => console.log(err));
