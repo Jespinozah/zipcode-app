@@ -40,6 +40,9 @@
       //Listen for submit
       document.querySelector('#zipForm').addEventListener('submit', getLocationInfo);
 
+      //Listen for delete
+      document.querySelector('body').addEventListener('click', deleteLocation);
+
       function getLocationInfo(e) {
         //Get ZIP value from input
         const zip = document.querySelector('.zip').value;
@@ -65,11 +68,11 @@
             let output = '';
             data.places.forEach(place => {
               output+=`
-              <article class="center teal accent-1">
+              <article class="message center teal accent-1">
                <ul class="collection with-header">
                   <li class="collection-header"><h4>Location info</h4>
                     <a class="btn-floating btn-tiny red">
-                      <i class="tiny material-icons">delete</i>
+                      <i class="tiny material-icons delete">delete</i>
                     </a>
                   </li>
                   <li class="collection-item">City: ${place['place name']}</li>
@@ -99,6 +102,14 @@
         //show correct icon
         // document.querySelector(`${icon}`)
         // .style.display = 'inline-block';
+      }
+
+      //Delete Location box
+      function deleteLocation(e) {
+        if (e.target.className == 'tiny material-icons delete') {
+          document.querySelector('.message').remove();
+          document.querySelector('.zip').value = '';
+        }
       }
     </script>
   </body>
