@@ -25,7 +25,7 @@
               <i class="material-icons prefix">pin_drop</i>
               <input placeholder="Enter zipcode" id="first_name" type="text" class="validate zip">
               <i class="material-icons prefix check">check</i>
-              <i class="material-icons prefix remove">remove</i>
+              <i class="material-icons prefix remove">close</i>
             </div>
           </div>
         </form>
@@ -93,15 +93,15 @@
       }
 
       function showIcon(icon) {
-        // //clear icons
-        // document.querySelector('.remove')
-        // .style.display = 'hidden';
-        // document.querySelector('.check')
-        // .style.display = 'hidden';
-        //
+        //clear icons
+        document.querySelector('.remove')
+        .style.display = 'none';
+        document.querySelector('.check')
+        .style.display = 'none';
+
         //show correct icon
-        // document.querySelector(`${icon}`)
-        // .style.display = 'inline-block';
+        document.querySelector(`.${icon}`)
+        .style.display = 'inline-block';
       }
 
       //Delete Location box
@@ -109,6 +109,7 @@
         if (e.target.className == 'tiny material-icons delete') {
           document.querySelector('.message').remove();
           document.querySelector('.zip').value = '';
+          document.querySelector('.check').remove();
         }
       }
     </script>
